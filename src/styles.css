@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --bg: rgb(28, 29, 36);
+    --hover: rgba(255, 255, 255, 0.411);
+    --selected: rgb(151, 214, 151);
+    --blue: rgb(81, 143, 197);
+}
+
+
+body {
+    color: white;
+    background-color: var(--bg);
+    font-family: "Montserrat", sans-serif;
+    height: 100vh; margin: 0;
+}
+
+i {
+    font-family: "Cormorant Garamond", serif;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}

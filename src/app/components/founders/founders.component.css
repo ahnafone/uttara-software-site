@@ -1,0 +1,87 @@
+#founders {
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    height: 10vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.header h3 {
+    font-weight: 400;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    margin-left: 8px;
+}
+.header fa-icon {
+    opacity: 0;
+    display: inline-block;
+    transition: 150ms opacity ease-out;
+}
+
+.header:hover fa-icon {
+    opacity: 1;
+    transition: 150ms opacity ease-in;
+}
+.show-arrow {
+    opacity: 1 !important;
+    transition: 150ms opacity ease-in;
+}
+.hide-arrow {
+    opacity: 0 !important;
+    transition: 150ms opacity ease-out;
+}
+
+
+
+#people {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 20vw;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.name {
+    font-size: 1.5em;
+    margin: 1rem 0;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.title {
+    font-size: 1.2em;
+    margin: 1rem 0;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.link fa-icon {
+    display: inline-block;
+}
+
+
+
+@media screen and (max-width: 650px) {
+    #founders {
+        justify-content: space-between;
+    }
+
+    #people {
+        flex: 0;
+        grid-template-columns: auto;
+        gap: 30px;
+        height: 60vh;
+        margin: 40px;
+    }
+}
