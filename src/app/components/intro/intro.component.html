@@ -1,9 +1,5 @@
 <div id="intro">
-    <div class="header">
-        <h3>founders</h3>
-        <h3>projects</h3>
-        <h3>contact</h3>
-    </div>
+    <div>&nbsp;</div>
 
     <div class="inner">
         <img src="logo-w.png" alt="">
@@ -13,5 +9,8 @@
         </div>
     </div>
 
-    <div></div>
+    <div class="goto" (click)="scrollToView()" [class.show-arrow]="!hideArrow && showArrow" [class.hide-arrow]="hideArrow">
+        <h3>founders</h3>
+        <fa-icon [icon]="faArrowDown" />
+    </div>
 </div>

@@ -24,13 +24,13 @@ export class FoundersComponent implements OnDestroy {
       this.showArrow = true;
     }, 3000);
 
-    const screenHeight = screen.height;
+    const screenHeight = window.innerHeight;
     this.scrollListener = renderer.listen('window', 'scroll', e => {
       let ypos = e.target.scrollingElement.scrollTop;
 
-      if(!this.hideArrow && ypos > (0.6*screenHeight)) {
+      if(!this.hideArrow && ypos > (1.6*screenHeight)) {
         this.hideArrow = true
-      } else if (this.hideArrow && ypos < (0.6 * screenHeight)) {
+      } else if (this.hideArrow && ypos < (1.6 * screenHeight)) {
         this.hideArrow = false;
       }
     });
@@ -42,7 +42,7 @@ export class FoundersComponent implements OnDestroy {
 
 
   scrollToView() {
-    document.getElementById("people")?.scrollIntoView({
+    document.getElementById("projects")?.scrollIntoView({
       behavior: "smooth",
       block: "start",
       inline: "nearest"

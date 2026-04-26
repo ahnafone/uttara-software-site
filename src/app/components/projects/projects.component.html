@@ -1,1 +1,23 @@
-<p>projects works!</p>
+<div id="projects">
+    <span>&nbsp;</span>
+
+    <div class="grid">
+        @for(proj of projects; track $index) {
+            <div class="project-outer">
+                <div class="project" (click)="goto(proj.link)">
+                    <img [src]="proj.img" [class]="{'pt-bg': proj.title=='Platypus Toys', 'sd-bg': proj.title=='Sarcomere Dynamics', 'rr-bg': proj.title=='Recyclorobo.ai'}"
+                        alt="">
+                    <h3>{{ proj.title }}</h3>
+                    <p>{{ proj.desc }}</p>
+                    <p class="goto-link"> go to site <fa-icon [icon]="faGoto" /> </p>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="goto" (click)="scrollToView()" [class.show-arrow]="!hideArrow && showArrow"
+        [class.hide-arrow]="hideArrow">
+        <h3>contact</h3>
+        <fa-icon [icon]="faArrowDown" />
+    </div>
+</div>

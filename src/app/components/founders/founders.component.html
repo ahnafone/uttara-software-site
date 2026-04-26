@@ -1,8 +1,5 @@
 <div id="founders">
-    <div class="header" (click)="scrollToView()">
-        <h3>founders</h3>
-        <fa-icon [icon]="faArrowDown" [class.show-arrow]="!hideArrow && showArrow" [class.hide-arrow]="hideArrow" />
-    </div>
+    <span>&nbsp;</span>
 
     <div id="people">
         <div class="founder">
@@ -20,5 +17,8 @@
         </div>
     </div>
 
-    <span>&nbsp;</span>
+    <div class="goto" (click)="scrollToView()" [class.show-arrow]="!hideArrow && showArrow" [class.hide-arrow]="hideArrow">
+        <h3>projects</h3>
+        <fa-icon [icon]="faArrowDown" />
+    </div>
 </div>

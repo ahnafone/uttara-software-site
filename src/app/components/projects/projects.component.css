@@ -1,0 +1,100 @@
+#projects {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 3em 4em;
+}
+
+
+
+.project-outer {
+    height: 300px;
+}
+.project {
+    width: 15em;
+    text-align: left;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 1em;
+    cursor: pointer;
+}
+
+
+.project img {
+    height: 7em; width: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.pt-bg {
+    background-color: white;
+}
+.sd-bg {
+    background-color: black;
+}
+.rr-bg {
+    background-color: #404040;
+    background-image: radial-gradient(transparent, rgb(17, 17, 17));
+}
+
+
+.goto-link {
+    font-style: italic;
+    font-size: 0.8em;
+
+    height: 0;
+    overflow: hidden;
+    transition: 150ms height ease-out;
+}
+.project:hover .goto-link {
+    height: 1.2em;
+    transition: 150ms height ease-in;
+}
+
+
+
+.goto {
+    display: flex;
+    height: 10vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    opacity: 0;
+    transition: 150ms opacity ease-out;
+}
+.goto h3 {
+    font-weight: 400;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    margin-top: 0; margin-bottom: 10px;
+    margin-left: 8px;
+}
+.goto fa-icon {
+    display: inline-block;
+}
+
+.goto:hover {
+    opacity: 1 !important;
+    transition: 150ms opacity ease-in;
+}
+.show-arrow {
+    opacity: 1 !important;
+    transition: 300ms opacity ease-in;
+}
+.hide-arrow {
+    opacity: 0 !important;
+    transition: 300ms opacity ease-out;
+}

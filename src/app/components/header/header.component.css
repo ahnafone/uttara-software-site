@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    cursor: pointer;
+    padding-top: 15px;
+
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.header h3 {
+    font-weight: 400;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 2em;
+    padding-left: 3px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 300ms ease-out;
+}
+.header h3:hover {
+    border-color: white;
+    transition: border-color 300ms ease-in;
+}
+
+.header-border {
+    border-color: white !important;
+    transition: border-color 300ms ease-in;
+}
