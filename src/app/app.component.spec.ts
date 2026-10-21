@@ -20,10 +20,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('uttara-website');
   });
 
-  it('should render title', () => {
+  it('should render the router outlet shell', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, uttara-website');
+    expect(compiled.querySelectorAll('router-outlet').length).toBe(1);
   });
 });

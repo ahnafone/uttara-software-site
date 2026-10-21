@@ -1,5 +1,10 @@
-<div class="header">
-    <h3 [class.header-border]="currPage == 1" (click)="scrollToView('founders')" >founders</h3>
-    <h3 [class.header-border]="currPage == 2" (click)="scrollToView('projects')" >projects</h3>
-    <h3 [class.header-border]="currPage == 3" (click)="scrollToView('contact')" >contact</h3>
-</div>
+<nav class="header" aria-label="Main navigation">
+    <a href="#founders" [class.header-border]="activeSection === 'founders'"
+        (click)="navigateToSection($event, 'founders')">founders</a>
+    <a href="#projects" [class.header-border]="activeSection === 'projects'"
+        (click)="navigateToSection($event, 'projects')">websites</a>
+    <a href="#products" [class.header-border]="activeSection === 'products'"
+        (click)="navigateToSection($event, 'products')">products</a>
+    <a href="#contact" [class.header-border]="activeSection === 'contact'"
+        (click)="navigateToSection($event, 'contact')">contact</a>
+</nav>

@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { afterNextRender, ChangeDetectorRef, Component, OnDestroy, Renderer2 } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,38 +8,48 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './intro.component.html',
   styleUrl: './intro.component.css'
 })
-export class IntroComponent {
+export class IntroComponent implements OnDestroy {
 
   faArrowDown = faChevronDown;
 
   showArrow = false;
-  hideArrow = false;
-  scrollListener;
+  private removeScrollListener: () => void;
+  private removeResizeListener: () => void;
 
-  constructor(private renderer: Renderer2) {
-    setTimeout(() => {
-      this.showArrow = true;
-    }, 3000);
-
-    const screenHeight = screen.height;
-    this.scrollListener = renderer.listen('window', 'scroll', e => {
-      let ypos = e.target.scrollingElement.scrollTop;
-
-      if (!this.hideArrow && ypos > (0.6 * screenHeight)) {
-        this.hideArrow = true
-      } else if (this.hideArrow && ypos < (0.6 * screenHeight)) {
-        this.hideArrow = false;
-      }
+  constructor(private renderer: Renderer2, private changeDetectorRef: ChangeDetectorRef) {
+    this.removeScrollListener = renderer.listen('window', 'scroll', () => this.updateArrowVisibility());
+    this.removeResizeListener = renderer.listen('window', 'resize', () => this.updateArrowVisibility());
+    afterNextRender(() => {
+      this.updateArrowVisibility();
+      this.changeDetectorRef.markForCheck();
     });
   }
 
-  scrollToView() {
-    document.getElementById("founders")?.scrollIntoView({
-      behavior: "smooth",
+  ngOnDestroy(): void {
+    this.removeScrollListener();
+    this.removeResizeListener();
+  }
+
+  scrollToView(): void {
+    document.getElementById('founders')?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
       block: "start",
       inline: "nearest"
     });
-    this.showArrow = false;
+  }
+
+  handleArrowKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.scrollToView();
+    }
+  }
+
+  private updateArrowVisibility(): void {
+    const section = document.getElementById('intro');
+    if (!section) return;
+    const bounds = section.getBoundingClientRect();
+    this.showArrow = bounds.top < window.innerHeight && bounds.bottom > 0;
   }
 
 }

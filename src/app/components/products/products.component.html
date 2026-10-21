@@ -1,0 +1,33 @@
+<section id="products" aria-label="products">
+    <div>&nbsp;</div>
+
+    <div>
+        <div class="product-list">
+            <div class="product" role="link" tabindex="0" (click)="openProduct($event, 'castor')"
+                (auxclick)="openProductFromAuxClick($event, 'castor')"
+                (keydown)="handleProductKeydown($event, 'castor')">
+                <div class="product-image castor-art">Castor AI</div>
+                <h3>Castor AI</h3>
+                <p>a secure, privacy-focused local AI agent.</p>
+                <span class="goto-link">explore Castor AI <span aria-hidden="true">↗</span></span>
+            </div>
+            <div class="product" role="link" tabindex="0" (click)="openProduct($event, 'timesheet')"
+                (auxclick)="openProductFromAuxClick($event, 'timesheet')"
+                (keydown)="handleProductKeydown($event, 'timesheet')">
+                <img class="product-image timesheet-art" src="projects/timesheet.png" alt="">
+                <h3>timesheet.</h3>
+                <p>time tracking and invoice creation for freelancers.</p>
+                <span class="goto-link">open timesheet <span aria-hidden="true">↗</span></span>
+            </div>
+        </div>
+        <br><br>
+        <div class="section-heading">
+            <p>apps built and maintained by uttara software for everyday utility and ongoing services.</p>
+        </div>
+    </div>
+
+    <div class="goto" role="button" tabindex="0" aria-label="Go to contact" (click)="scrollToView()" (keydown)="handleArrowKeydown($event)" [class.show-arrow]="showArrow">
+        <h3>contact</h3>
+        <fa-icon [icon]="faArrowDown" />
+    </div>
+</section>

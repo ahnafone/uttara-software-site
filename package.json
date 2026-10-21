@@ -4,8 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "deploy": "ng build && firebase deploy --only hosting:uttara-software",
+    "build:website": "ng build",
+    "build": "node scripts/build-combined.cjs",
+    "deploy": "node scripts/deploy.cjs",
+    "preview": "node scripts/preview.cjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

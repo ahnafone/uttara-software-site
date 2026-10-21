@@ -1,0 +1,188 @@
+#castor-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 100px 20px 40px; /* accommodate for fixed header */
+    box-sizing: border-box;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInDown 1s ease-out forwards;
+}
+
+.title {
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 3.5em;
+    letter-spacing: 12px;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #fff, var(--selected));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.8em;
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: var(--hover);
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.origin-text {
+    font-size: 1em;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--blue);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 900px;
+    width: 100%;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 8px;
+    transition: transform 300ms ease, background 300ms ease, border-color 300ms ease;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.feature-card:nth-child(1) { animation-delay: 0.2s; }
+.feature-card:nth-child(2) { animation-delay: 0.4s; }
+.feature-card:nth-child(3) { animation-delay: 0.6s; }
+.feature-card:nth-child(4) { animation-delay: 0.8s; }
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--hover);
+}
+
+.feature-card.highlight:hover {
+    border-color: var(--selected);
+}
+
+.feature-title {
+    font-weight: 400;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--selected);
+}
+
+.feature-card:nth-child(2) .feature-title { color: #f48fb1; } /* Just a subtle differentiation */
+.feature-card:nth-child(3) .feature-title { color: #ce93d8; }
+.feature-card:nth-child(4) .feature-title { color: var(--blue); }
+
+
+.feature-desc {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #ccc;
+    margin: 0;
+}
+
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .title {
+        font-size: 2.5em;
+        letter-spacing: 8px;
+    }
+    .subtitle {
+        font-size: 1.4em;
+    }
+}
+
+.cta-section {
+    margin-top: 80px;
+    width: 100%;
+    max-width: 900px;
+    padding: 50px 30px;
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 1s; /* appears after the cards */
+}
+
+.cta-heading {
+    font-weight: 400;
+    font-size: 1.8em;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.cta-text {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.3em;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: transparent;
+    border: 1px solid var(--selected);
+    color: var(--selected);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 1em;
+    font-weight: 400;
+    border-radius: 4px;
+    transition: background-color 300ms ease, color 300ms ease, transform 300ms ease;
+}
+
+.cta-button:hover {
+    background-color: var(--selected);
+    color: var(--bg);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+

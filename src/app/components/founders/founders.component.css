@@ -37,6 +37,11 @@
     opacity: 1 !important;
     transition: 300ms opacity ease-in;
 }
+.goto:focus-visible {
+    opacity: 1 !important;
+    outline: 2px solid white;
+    outline-offset: 4px;
+}
 .hide-arrow {
     opacity: 0 !important;
     transition: 300ms opacity ease-out;

@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div class="goto" (click)="scrollToView()" [class.show-arrow]="!hideArrow && showArrow" [class.hide-arrow]="hideArrow">
+    <div class="goto" role="button" tabindex="0" aria-label="Go to founders" (click)="scrollToView()" (keydown)="handleArrowKeydown($event)" [class.show-arrow]="showArrow">
         <h3>founders</h3>
         <fa-icon [icon]="faArrowDown" />
     </div>

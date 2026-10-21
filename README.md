@@ -1,59 +1,37 @@
-# UttaraWebsite
+# Uttara Website
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
+The Uttara Angular site remains at `/` (including existing routes such as `/castor`). The separately maintained timesheet app is assembled under `/timesheet/` in the same Firebase Hosting site (`uttara-software`, project `timesheet-e8ebf`). The apps remain separate builds and dependencies.
 
-## Development server
+## Requirements and setup
 
-To start a local development server, run:
+Install dependencies independently in both repositories; the build helper never runs an install command. The Uttara site uses its existing Angular 19 toolchain. The timesheet app uses Angular 22 and requires Node.js `^24.15.0` or `>=26.0.0` (Node 24 recommended).
 
-```bash
-ng serve
-```
+By default, the build expects `timesheet-app` at `../../timesheet-app` relative to this repository. For a different checkout layout, set `TIMESHEET_APP_DIR` to the timesheet repository directory before running the command. Paths with spaces are supported.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Build
 
 ```bash
-ng generate component component-name
+npm run build:website  # Uttara alone; use only for local website development
+npm run build           # both apps, for the complete Hosting artifact
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The combined build builds Uttara first, builds timesheet with `/timesheet/` as its base URL, then replaces only `dist/uttara-website/browser/timesheet` with the fresh timesheet output. A failed build or missing source/dependencies exits nonzero. Do not deploy the website-only output: deployment always runs the combined build first.
+
+## Preview and deployment
 
 ```bash
-ng generate --help
+npm run preview  # builds and deploys the combined artifact to the preview channel
+npm run deploy   # builds and deploys the combined artifact to production Hosting
 ```
 
-## Building
+Both commands explicitly target project `timesheet-e8ebf`; the Hosting site is selected by this repository's `firebase.json` (`uttara-software`). Production deploy is limited to the Hosting service configured here (not Firestore or Storage). A coordinated release is required: every website production release replaces the same Hosting artifact and must include the timesheet app. These commands contact Firebase and are not needed to validate builds.
 
-To build the project run:
+Firebase CLI supports `firebase deploy --only hosting` to limit a deployment to Hosting; this config's `site` selects `uttara-software`. Preview uses `firebase hosting:channel:deploy CHANNEL_ID --project PROJECT_ID`; it stages the configured Hosting site without publishing to its live channel.
 
-```bash
-ng build
-```
+## Auth and routing considerations
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+`/timesheet` temporarily redirects to `/timesheet/`; nested timesheet routes fall back to the timesheet entrypoint, while other unmatched routes retain the Uttara root fallback. The timesheet app uses the same Firebase project; confirm the deployed hostname is present in Firebase Authentication's authorized domains before release. Browser auth persistence is origin-wide, but app navigation is a full-page transition between independent Angular applications. No DNS changes are needed.
 
-## Running unit tests
+## Tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Run `npm test` for the Uttara app and `npm test` in the timesheet repository for its focused app tests.

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Renderer2 } from '@angular/core';
+import { afterNextRender, ChangeDetectorRef, Component, OnDestroy, Renderer2 } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faAt, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -16,38 +16,44 @@ export class FoundersComponent implements OnDestroy {
   faLinkedIn = faLinkedin;
 
   showArrow = false;
-  hideArrow = false;
-  scrollListener;
+  private removeScrollListener: () => void;
+  private removeResizeListener: () => void;
 
-  constructor(private renderer: Renderer2) {
-    setTimeout(() => {
-      this.showArrow = true;
-    }, 3000);
-
-    const screenHeight = window.innerHeight;
-    this.scrollListener = renderer.listen('window', 'scroll', e => {
-      let ypos = e.target.scrollingElement.scrollTop;
-
-      if(!this.hideArrow && ypos > (1.6*screenHeight)) {
-        this.hideArrow = true
-      } else if (this.hideArrow && ypos < (1.6 * screenHeight)) {
-        this.hideArrow = false;
-      }
+  constructor(private renderer: Renderer2, private changeDetectorRef: ChangeDetectorRef) {
+    this.removeScrollListener = renderer.listen('window', 'scroll', () => this.updateArrowVisibility());
+    this.removeResizeListener = renderer.listen('window', 'resize', () => this.updateArrowVisibility());
+    afterNextRender(() => {
+      this.updateArrowVisibility();
+      this.changeDetectorRef.markForCheck();
     });
   }
 
   ngOnDestroy(): void {
-    this.scrollListener();
+    this.removeScrollListener();
+    this.removeResizeListener();
   }
 
 
-  scrollToView() {
+  scrollToView(): void {
     document.getElementById("projects")?.scrollIntoView({
-      behavior: "smooth",
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
       block: "start",
       inline: "nearest"
     });
-    this.showArrow = false;
+  }
+
+  handleArrowKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.scrollToView();
+    }
+  }
+
+  private updateArrowVisibility(): void {
+    const section = document.getElementById('founders');
+    if (!section) return;
+    const bounds = section.getBoundingClientRect();
+    this.showArrow = bounds.top < window.innerHeight && bounds.bottom > 0;
   }
 
 }

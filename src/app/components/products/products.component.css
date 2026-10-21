@@ -1,0 +1,139 @@
+#products {
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    padding: 6rem 1.5rem 3rem;
+    text-align: center;
+}
+
+.section-heading h2 {
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+}
+
+.section-heading p {
+    max-width: 42rem;
+    margin: 0.75rem auto 0;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 17em));
+    grid-auto-rows: 1fr;
+    gap: 2em;
+    width: 100%;
+    justify-content: center;
+}
+
+.product {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1em;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: inherit;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.product-image {
+    display: flex;
+    width: 100%;
+    height: 7rem;
+    box-sizing: border-box;
+    flex: 0 0 7rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+.castor-art {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.product h3 {
+    margin: 1em 0 0;
+    font-weight: 700;
+}
+
+.product p {
+    flex: 1 0 auto;
+    margin: 1em 0;
+}
+
+.goto-link {
+    height: 0;
+    margin: 1em 0;
+    font-size: 0.8em;
+    font-style: italic;
+    overflow: hidden;
+    transition: 150ms height ease-out;
+}
+
+.product:hover .goto-link,
+.product:focus-visible .goto-link {
+    height: 1.2em;
+    transition: 150ms height ease-in;
+}
+
+.product:hover {
+    text-decoration: none;
+}
+
+.product:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 4px;
+}
+
+.goto {
+    display: flex;
+    height: 10vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: 150ms opacity ease-out;
+}
+
+.goto h3 {
+    margin: 0 0 10px 8px;
+    font-size: 1.3em;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+}
+
+.goto fa-icon {
+    display: inline-block;
+}
+
+.goto:hover,
+.goto:focus-visible,
+.show-arrow {
+    opacity: 1 !important;
+}
+
+.goto:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 4px;
+}
+
+@media screen and (max-width: 600px) {
+    .product-list {
+        grid-template-columns: minmax(0, 17em);
+    }
+}

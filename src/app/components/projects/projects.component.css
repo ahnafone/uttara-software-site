@@ -1,28 +1,52 @@
 #projects {
-    height: 100vh;
+    min-height: 100vh;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    padding: 5rem 1rem 0;
 }
 
+.section-heading h2,
+.section-heading p {
+    font-weight: 400;
+}
+
+.section-heading h2 {
+    text-transform: uppercase;
+    letter-spacing: 6px;
+}
+
+.section-heading p {
+    margin: 0.75rem 0 0;
+}
 
 
 .grid {
     display: grid;
-    grid-template-columns: auto auto;
-    gap: 3em 4em;
+    grid-template-columns: repeat(3, minmax(0, 17em));
+    grid-auto-rows: 1fr;
+    gap: 2em;
+    justify-content: center;
 }
 
 
 
 .project-outer {
-    height: 300px;
+    display: flex;
+    min-width: 0;
 }
 .project {
-    width: 15em;
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    flex-direction: column;
     text-align: left;
+    color: inherit;
+    text-decoration: none;
     border: 1px solid white;
     border-radius: 10px;
     padding: 1em;
@@ -34,6 +58,10 @@
     height: 7em; width: 100%;
     object-fit: contain;
     border-radius: 10px;
+}
+
+.project h3 {
+    margin-bottom: 0;
 }
 
 .pt-bg {
@@ -51,14 +79,22 @@
 .goto-link {
     font-style: italic;
     font-size: 0.8em;
-
     height: 0;
+    margin: 1em 0;
     overflow: hidden;
     transition: 150ms height ease-out;
 }
-.project:hover .goto-link {
+.project:hover .goto-link,
+.project:focus-visible .goto-link {
     height: 1.2em;
     transition: 150ms height ease-in;
+}
+.project:hover {
+    text-decoration: none;
+}
+.project:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 4px;
 }
 
 
@@ -94,7 +130,29 @@
     opacity: 1 !important;
     transition: 300ms opacity ease-in;
 }
+.goto:focus-visible {
+    opacity: 1 !important;
+    outline: 2px solid white;
+    outline-offset: 4px;
+}
 .hide-arrow {
     opacity: 0 !important;
     transition: 300ms opacity ease-out;
+}
+
+@media screen and (max-width: 850px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 17em));
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .grid {
+        grid-template-columns: minmax(0, 17em);
+        width: 100%;
+    }
+
+    .section-heading p {
+        max-width: 22rem;
+    }
 }
